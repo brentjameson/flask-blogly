@@ -1,5 +1,8 @@
 """Models for Blogly."""
+# from time import timezone
+# from xmlrpc.client import DateTime
 from flask_sqlalchemy import SQLAlchemy
+import datetime
 
 db = SQLAlchemy()
 
@@ -21,8 +24,24 @@ class User(db.Model):
 
     image_url = db.Column(db.String)
 
-    # def edit_user_info(self):
-        # Edit user information
-        # return User.query.filter_by(id = self.id).update(dict(first_name = self.first_name, last_name = self.last_name, image_url = self.image_url))
-        #  db.session.add(user)
-        #  db.session.commit()
+
+class Post(db.Model):
+    """POSTS"""
+
+    __tablename__ = 'posts'
+
+    id = db.Column(db.Integer, primary_key = True, autoincrement=True)
+
+    title = db.Column(db.String(50), nullable=False)
+
+    content = db.Column(db.String, nullable=False)
+
+    created_at = db.Column(
+        db.DateTime,
+        nullable = False,
+        default = datetime.datetime.now
+        )
+
+    user_id = db.Column(db.Integer, db.ForeignKey('User.id'), nullable = False)
+
+    the_user = db.relationship('User', backref = 'posts')
