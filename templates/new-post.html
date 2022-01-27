@@ -10,6 +10,18 @@
     <form action="/users/{{user.id}}/posts/new" method='POST'>
         <input type="text" name='post_title' placeholder="Title">
         <input type="text" name='post_content' placeholder="content">
+        {% if tags != [] %}
+            {% for tag in tags %}
+                <div>
+                   <input type="checkbox" 
+                   name = 'tags' 
+                   value = "{{tag.id}}" 
+                   id = "tag_{{tag.id}}"" >
+                   <label for="tag_{{tag.id}}">{{tag.name}}</label>
+                    <br>
+                </div>
+            {% endfor %}
+        {% endif %}
         <button>Add</button>
     </form>
     

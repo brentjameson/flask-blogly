@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>tags</title>
 </head>
 <body>
-    <h1>All Users</h1>
+    <h1>Tags</h1>
     <section>
         {% for msg in get_flashed_messages()%}
         <p class = 'messages'>
@@ -16,13 +16,12 @@
         {% endfor %}
     </section>
     <ul>
-        {% for user in users %}
-        <li> <a href="users/{{user.id}}">{{user.first_name}} {{user.last_name}}</a></li>
+        {% for tag in tags %}
+        <li><a href="/tags/{{tag.id}}">{{tag.name}}</a></li>
         {% endfor %}
     </ul>
-    <a href="users/new">Create New User</a>
+    <a href="/tags/new">Create New Tag</a>
     <br>
-    <a href="/tags">Tags List</a>
-    
+    <a href="/">Return Home</a>
 </body>
 </html>
